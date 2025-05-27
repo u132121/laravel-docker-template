@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Todo;
-
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -20,5 +19,16 @@ class TodoController extends Controller
     {
         // TODO: 第1引数を指定
         return view('todo.create');
+    }
+
+    public function store(Request $request)
+    {
+       $content = $request->input('content');
+
+        $todo = new Todo(); 
+        $todo->content = $content;
+        $todo->save();
+
+        return redirect()->route('todo.index');
     }
 }
