@@ -24,6 +24,7 @@ Route::post('/todo', 'TodoController@store')->name('todo.store');
 
 // 詳細画面
 Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');
+Route::delete('/todo/{id}', 'TodoController@delete')->name('todo.delete');
 
 // 更新画面
 Route::get('/todo/{id}/edit', 'TodoController@edit')->name('todo.edit');

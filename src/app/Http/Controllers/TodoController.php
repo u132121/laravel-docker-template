@@ -47,6 +47,15 @@ class TodoController extends Controller
         return view('todo.show', ['todo' => $todo]);
     }
 
+    // 削除処理
+    public function delete($id)
+    {
+        $todo = $this->todo->find($id);
+        $todo->delete();
+
+        return redirect()->route('todo.index');
+    }
+
     // 更新画面表示
     public function edit($id)
     {
