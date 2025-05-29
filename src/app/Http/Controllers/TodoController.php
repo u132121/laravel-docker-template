@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
+    // 一覧画面表示
     public function index()
     {
         $todo = new Todo();
@@ -15,12 +16,13 @@ class TodoController extends Controller
         return view('todo.index', ['todos' => $todos]);
     }
     
+    // 新規追加画面表示
     public function create()
     {
-        // TODO: 第1引数を指定
         return view('todo.create');
     }
 
+    // 新規追加処理
     public function store(Request $request)
     {
         $inputs = $request->all();
@@ -30,5 +32,14 @@ class TodoController extends Controller
         $todo->save();
 
         return redirect()->route('todo.index');
+    }
+
+    // 変更画面表示
+    public function show($id)
+    {
+        $model = new Todo();
+        $todo = $model->find($id);
+
+        return view('todo.show', ['todo' => $todo]);
     }
 }
